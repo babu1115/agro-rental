@@ -157,7 +157,7 @@ export default function Home() {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-background via-background to-primary/5">
+    <div className="min-h-screen bg-gradient-to-br from-background via-background to-primary/5 overflow-x-hidden">
       {/* Header Section with Enhanced Animations */}
       <header className="sticky top-0 z-50 backdrop-blur-xl bg-background/80 border-b border-border/50 shadow-lg shadow-primary/5">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 py-4 sm:py-5">
