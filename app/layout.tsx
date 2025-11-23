@@ -16,7 +16,6 @@ const inter = Inter({
 export const metadata: Metadata = {
   title: "AGRO RENT - Agricultural Equipment & Labour Hiring",
   description: "Rent agricultural equipment and hire skilled agricultural labour in your area",
-  generator: "v0.app",
   themeColor: [
     { media: "(prefers-color-scheme: light)", color: "#ffffff" },
     { media: "(prefers-color-scheme: dark)", color: "#1a1a1a" },
@@ -24,19 +23,9 @@ export const metadata: Metadata = {
   icons: {
     icon: [
       {
-        url: "/icon-light-32x32.png",
-        media: "(prefers-color-scheme: light)",
-      },
-      {
-        url: "/icon-dark-32x32.png",
-        media: "(prefers-color-scheme: dark)",
-      },
-      {
-        url: "/icon.svg",
-        type: "image/svg+xml",
+        url: "/icon.png",
       },
     ],
-    apple: "/apple-icon.png",
   },
 }
 
