@@ -1,0 +1,563 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+:root {
+  /* Updated for cleaner light theme with better contrast */
+  --background: oklch(0.99 0.005 142);
+  --foreground: oklch(0.12 0.02 140);
+  --card: oklch(1 0 0);
+  --card-foreground: oklch(0.12 0.02 140);
+  --popover: oklch(1 0 0);
+  --popover-foreground: oklch(0.12 0.02 140);
+  --primary: oklch(0.42 0.19 142);
+  --primary-foreground: oklch(0.99 0 0);
+  --secondary: oklch(0.56 0.23 65);
+  --secondary-foreground: oklch(0.99 0 0);
+  --muted: oklch(0.95 0.008 140);
+  --muted-foreground: oklch(0.48 0.04 140);
+  --accent: oklch(0.66 0.21 70);
+  --accent-foreground: oklch(0.99 0 0);
+  --destructive: oklch(0.577 0.245 27.325);
+  --destructive-foreground: oklch(0.98 0 0);
+  --border: oklch(0.92 0.008 0);
+  --input: oklch(0.97 0.005 0);
+  --ring: oklch(0.42 0.19 142);
+  --chart-1: oklch(0.42 0.19 142);
+  --chart-2: oklch(0.66 0.21 70);
+  --chart-3: oklch(0.56 0.23 65);
+  --chart-4: oklch(0.52 0.16 85);
+  --chart-5: oklch(0.46 0.13 100);
+  --radius: 0.875rem;
+  --sidebar: oklch(0.985 0 0);
+  --sidebar-foreground: oklch(0.145 0 0);
+  --sidebar-primary: oklch(0.205 0 0);
+  --sidebar-primary-foreground: oklch(0.985 0 0);
+  --sidebar-accent: oklch(0.97 0 0);
+  --sidebar-accent-foreground: oklch(0.205 0 0);
+  --sidebar-border: oklch(0.922 0 0);
+  --sidebar-ring: oklch(0.708 0 0);
+}
+
+.dark {
+  --background: oklch(0.15 0.04 140);
+  --foreground: oklch(0.98 0 0);
+  --card: oklch(0.2 0.05 140);
+  --card-foreground: oklch(0.98 0 0);
+  --popover: oklch(0.2 0.05 140);
+  --popover-foreground: oklch(0.98 0 0);
+  --primary: oklch(0.58 0.22 142);
+  --primary-foreground: oklch(0.15 0.04 140);
+  --secondary: oklch(0.68 0.24 70);
+  --secondary-foreground: oklch(0.15 0.04 140);
+  --muted: oklch(0.32 0.05 140);
+  --muted-foreground: oklch(0.75 0.05 140);
+  --accent: oklch(0.75 0.22 72);
+  --accent-foreground: oklch(0.15 0.04 140);
+  --destructive: oklch(0.396 0.141 25.723);
+  --destructive-foreground: oklch(0.98 0 0);
+  --border: oklch(0.28 0.05 140);
+  --input: oklch(0.24 0.05 140);
+  --ring: oklch(0.58 0.22 142);
+  --chart-1: oklch(0.58 0.22 142);
+  --chart-2: oklch(0.75 0.22 72);
+  --chart-3: oklch(0.68 0.24 70);
+  --chart-4: oklch(0.65 0.18 85);
+  --chart-5: oklch(0.62 0.15 100);
+  --sidebar: oklch(0.205 0 0);
+  --sidebar-foreground: oklch(0.985 0 0);
+  --sidebar-primary: oklch(0.488 0.243 264.376);
+  --sidebar-primary-foreground: oklch(0.985 0 0);
+  --sidebar-accent: oklch(0.269 0 0);
+  --sidebar-accent-foreground: oklch(0.985 0 0);
+  --sidebar-border: oklch(0.269 0 0);
+  --sidebar-ring: oklch(0.439 0 0);
+}
+
+/* Changed from @theme inline to @theme for proper Tailwind v4 support */
+@theme {
+  /* optional: --font-sans, --font-serif, --font-mono if they are applied in the layout.tsx */
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-chart-1: var(--chart-1);
+  --color-chart-2: var(--chart-2);
+  --color-chart-3: var(--chart-3);
+  --color-chart-4: var(--chart-4);
+  --color-chart-5: var(--chart-5);
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-ring: var(--sidebar-ring);
+}
+
+/* Removed incorrect @utility definitions that were causing empty class errors */
+
+@layer base {
+  * {
+    /* Removed problematic outline-ring/50 that was causing empty utility class errors */
+    border-color: var(--border);
+  }
+  body {
+    @apply bg-background text-foreground;
+    font-family: Inter, system-ui, sans-serif;
+  }
+
+  @keyframes slide-in-from-top {
+    from {
+      transform: translateY(-100%);
+    }
+    to {
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes slide-in-from-bottom {
+    from {
+      transform: translateY(100%);
+    }
+    to {
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes slide-in-from-left {
+    from {
+      transform: translateX(-100%);
+    }
+    to {
+      transform: translateX(0);
+    }
+  }
+
+  @keyframes slide-in-from-right {
+    from {
+      transform: translateX(100%);
+    }
+    to {
+      transform: translateX(0);
+    }
+  }
+
+  @keyframes slide-out-to-left {
+    from {
+      transform: translateX(0);
+    }
+    to {
+      transform: translateX(-100%);
+    }
+  }
+
+  @keyframes slide-out-to-right {
+    from {
+      transform: translateX(0);
+    }
+    to {
+      transform: translateX(100%);
+    }
+  }
+
+  @keyframes zoom-in {
+    from {
+      opacity: 0;
+      transform: scale(0.95);
+    }
+    to {
+      opacity: 1;
+      transform: scale(1);
+    }
+  }
+
+  @keyframes zoom-out {
+    from {
+      opacity: 1;
+      transform: scale(1);
+    }
+    to {
+      opacity: 0;
+      transform: scale(0.95);
+    }
+  }
+
+  @keyframes fade-in {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+
+  @keyframes fade-out {
+    from {
+      opacity: 1;
+    }
+    to {
+      opacity: 0;
+    }
+  }
+
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+
+  @keyframes slideUp {
+    from {
+      opacity: 0;
+      transform: translateY(16px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes slideDown {
+    from {
+      opacity: 0;
+      transform: translateY(-16px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes scaleIn {
+    from {
+      opacity: 0;
+      transform: scale(0.95);
+    }
+    to {
+      opacity: 1;
+      transform: scale(1);
+    }
+  }
+
+  @keyframes cardHover {
+    0% {
+      transform: translateY(0px);
+    }
+    100% {
+      transform: translateY(-8px);
+    }
+  }
+
+  /* Added gradient animation keyframe */
+  @keyframes gradient {
+    0%,
+    100% {
+      background-position: 0% 50%;
+    }
+    50% {
+      background-position: 100% 50%;
+    }
+  }
+
+  @keyframes float {
+    0%,
+    100% {
+      transform: translateY(0px);
+    }
+    50% {
+      transform: translateY(-10px);
+    }
+  }
+
+  /* Added fade-in-up animation for footer sections */
+  @keyframes fade-in-up {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  /* Added blink/pulse animation for login panels */
+  @keyframes blink-border {
+    0%,
+    100% {
+      border-color: transparent;
+      box-shadow: 0 0 0 rgba(0, 0, 0, 0);
+    }
+    50% {
+      border-color: var(--primary);
+      box-shadow: 0 0 20px rgba(66, 153, 66, 0.3);
+    }
+  }
+
+  @keyframes pulse-glow {
+    0%,
+    100% {
+      box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+    }
+    50% {
+      box-shadow: 0 10px 30px -5px rgba(66, 153, 66, 0.4), 0 4px 8px -2px rgba(66, 153, 66, 0.3);
+    }
+  }
+
+  /* Added new animations for header */
+  @keyframes shimmer {
+    0% {
+      background-position: -200% 0;
+    }
+    100% {
+      background-position: 200% 0;
+    }
+  }
+
+  @keyframes bounce-subtle {
+    0%,
+    100% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(-5px);
+    }
+  }
+
+  /* Added gradient-flow animation for demo credentials box */
+  @keyframes gradient-flow {
+    0%,
+    100% {
+      background-position: 0% 50%;
+    }
+    50% {
+      background-position: 100% 50%;
+    }
+  }
+}
+
+@layer utilities {
+  .animate-in {
+    animation-duration: 150ms;
+    animation-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .animate-out {
+    animation-duration: 150ms;
+    animation-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .fade-in-0 {
+    animation-name: fade-in;
+  }
+
+  .fade-out-0 {
+    animation-name: fade-out;
+  }
+
+  .zoom-in-95 {
+    animation-name: zoom-in;
+  }
+
+  .zoom-out-95 {
+    animation-name: zoom-out;
+  }
+
+  .slide-in-from-top-2 {
+    animation-name: slide-in-from-top;
+  }
+
+  .slide-in-from-bottom-2 {
+    animation-name: slide-in-from-bottom;
+  }
+
+  .slide-in-from-left-2 {
+    animation-name: slide-in-from-left;
+  }
+
+  .slide-in-from-right-2 {
+    animation-name: slide-in-from-right;
+  }
+
+  .slide-in-from-left-52 {
+    animation-name: slide-in-from-left;
+  }
+
+  .slide-in-from-right-52 {
+    animation-name: slide-in-from-right;
+  }
+
+  .slide-out-to-left-52 {
+    animation-name: slide-out-to-left;
+  }
+
+  .slide-out-to-right-52 {
+    animation-name: slide-out-to-right;
+  }
+
+  .slide-out-to-left {
+    animation-name: slide-out-to-left;
+  }
+
+  .slide-in-from-left {
+    animation-name: slide-in-from-left;
+  }
+}
+
+@layer components {
+  .animate-fade-in {
+    animation: fadeIn 0.5s ease-out forwards;
+    opacity: 0;
+  }
+
+  .animate-fade-in.delay-100 {
+    animation: fadeIn 0.5s ease-out 0.1s forwards;
+  }
+
+  .animate-fade-in.delay-200 {
+    animation: fadeIn 0.5s ease-out 0.2s forwards;
+  }
+
+  .animate-fade-in.delay-300 {
+    animation: fadeIn 0.5s ease-out 0.3s forwards;
+  }
+
+  .animate-fade-in.delay-400 {
+    animation: fadeIn 0.5s ease-out 0.4s forwards;
+  }
+
+  /* Added fade-in-up animation class for footer */
+  .animate-fade-in-up {
+    animation: fade-in-up 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    opacity: 0;
+  }
+
+  .animate-slide-up {
+    animation: slideUp 0.6s ease-out forwards;
+    opacity: 0;
+  }
+
+  .animate-slide-up.delay-100 {
+    animation: slideUp 0.6s ease-out 0.1s forwards;
+  }
+
+  .animate-slide-up.delay-200 {
+    animation: slideUp 0.6s ease-out 0.2s forwards;
+  }
+
+  .animate-slide-up.delay-300 {
+    animation: slideUp 0.6s ease-out 0.3s forwards;
+  }
+
+  .animate-slide-down {
+    animation: slideDown 0.5s ease-out;
+  }
+
+  .animate-scale-in {
+    animation: scaleIn 0.3s ease-out;
+  }
+
+  /* Added gradient animation utility */
+  .bg-size-300 {
+    background-size: 300% 300%;
+  }
+
+  .bg-size-200 {
+    background-size: 200% 200%;
+  }
+
+  .animate-gradient {
+    background-size: 300% 300%;
+    animation: gradient 6s ease infinite;
+  }
+
+  .animate-float {
+    animation: float 3s ease-in-out infinite;
+  }
+
+  /* Added gradient-flow animation class for glowing borders */
+  .animate-gradient-flow {
+    background-size: 200% 200%;
+    animation: gradient-flow 3s ease infinite;
+  }
+
+  /* Added delay utilities for staggered animations */
+  .delay-100 {
+    animation-delay: 0.1s;
+  }
+
+  .delay-200 {
+    animation-delay: 0.2s;
+  }
+
+  .delay-300 {
+    animation-delay: 0.3s;
+  }
+
+  .delay-400 {
+    animation-delay: 0.4s;
+  }
+
+  .delay-500 {
+    animation-delay: 0.5s;
+  }
+
+  .delay-1000 {
+    animation-delay: 1s;
+  }
+
+  /* Added delay utilities for longer animations */
+  .delay-1500 {
+    animation-delay: 1.5s;
+  }
+
+  .card-hover {
+    @apply transition-all duration-300 hover:shadow-lg hover:-translate-y-1;
+  }
+
+  .btn-interactive {
+    @apply transition-all duration-300 active:scale-95 hover:scale-105;
+  }
+
+  .equipment-card {
+    @apply rounded-xl overflow-hidden border border-border/50 bg-card transition-all duration-300 hover:shadow-xl hover:border-primary/50 hover:-translate-y-2;
+  }
+
+  .hover-glow {
+    @apply hover:shadow-lg hover:shadow-primary/20 transition-all duration-300;
+  }
+
+  /* Added panel-blink class for login panels hover effect */
+  .panel-blink {
+    @apply transition-all duration-500 ease-in-out;
+  }
+
+  .panel-blink:hover {
+    animation: blink-border 1.5s ease-in-out infinite, pulse-glow 1.5s ease-in-out infinite;
+  }
+}
