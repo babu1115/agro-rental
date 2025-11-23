@@ -55,6 +55,8 @@ export default function Home() {
     setSuccess("")
     setLoading(true)
 
+    console.log("[v0] Login attempt started")
+
     try {
       const response = await fetch("/api/auth/user-login", {
         method: "POST",
@@ -63,21 +65,24 @@ export default function Home() {
       })
 
       const data = await response.json()
+      console.log("[v0] Login response:", data)
 
       if (!response.ok) {
         setError(data.error || "Login failed")
+        setLoading(false)
         return
       }
 
       localStorage.setItem("user", JSON.stringify(data.user))
       localStorage.setItem("userRole", "user")
       setSuccess("Login successful! Redirecting...")
-      setTimeout(() => {
-        router.push("/dashboard")
-      }, 500)
+
+      console.log("[v0] Redirecting to dashboard")
+      // Immediate redirect without setTimeout
+      router.push("/dashboard")
     } catch (err) {
+      console.error("[v0] Login error:", err)
       setError("An error occurred during login")
-    } finally {
       setLoading(false)
     }
   }
@@ -88,6 +93,8 @@ export default function Home() {
     setSuccess("")
     setLoading(true)
 
+    console.log("[v0] Registration attempt started")
+
     try {
       const response = await fetch("/api/auth/user-register", {
         method: "POST",
@@ -96,9 +103,11 @@ export default function Home() {
       })
 
       const data = await response.json()
+      console.log("[v0] Registration response:", data)
 
       if (!response.ok) {
         setError(data.error || "Registration failed")
+        setLoading(false)
         return
       }
 
@@ -110,14 +119,22 @@ export default function Home() {
       localStorage.setItem("user", JSON.stringify(data.user))
       localStorage.setItem("userRole", "user")
 
-      setSuccess("Registration successful! Please save your credentials below.")
+      setSuccess("Registration successful! Redirecting to dashboard...")
 
       // Clear form
       setUserName("")
       setUserPhone("")
       setUserEmail("")
+
+      // Redirect to dashboard after 3 seconds (time to see credentials)
+      console.log("[v0] Registration successful, redirecting to dashboard in 3 seconds")
+      setTimeout(() => {
+        router.push("/dashboard")
+      }, 3000)
     } catch (err) {
+      console.error("[v0] Registration error:", err)
       setError("An error occurred during registration")
+      setLoading(false)
     } finally {
       setLoading(false)
     }
@@ -129,6 +146,8 @@ export default function Home() {
     setSuccess("")
     setLoading(true)
 
+    console.log("[v0] Admin login attempt started")
+
     try {
       const response = await fetch("/api/auth/admin-login", {
         method: "POST",
@@ -137,27 +156,30 @@ export default function Home() {
       })
 
       const data = await response.json()
+      console.log("[v0] Admin login response:", data)
 
       if (!response.ok) {
         setError(data.error || "Admin login failed")
+        setLoading(false)
         return
       }
 
       localStorage.setItem("admin", JSON.stringify(data.admin))
       localStorage.setItem("userRole", "admin")
       setSuccess("Admin login successful! Redirecting...")
-      setTimeout(() => {
-        router.push("/admin-dashboard")
-      }, 500)
+
+      console.log("[v0] Redirecting to admin dashboard")
+      // Immediate redirect without setTimeout
+      router.push("/admin-dashboard")
     } catch (err) {
+      console.error("[v0] Admin login error:", err)
       setError("An error occurred during login")
-    } finally {
       setLoading(false)
     }
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-background via-background to-primary/5 overflow-x-hidden">
+    <div className="min-h-screen bg-gradient-to-br from-background via-background to-primary/5">
       {/* Header Section with Enhanced Animations */}
       <header className="sticky top-0 z-50 backdrop-blur-xl bg-background/80 border-b border-border/50 shadow-lg shadow-primary/5">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 py-4 sm:py-5">
